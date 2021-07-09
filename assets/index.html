@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Server</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""
+        />
+        <script
+            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""
+        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-hash/0.2.1/leaflet-hash.js"></script>
+    </head>
+    <body style="margin: 0">
+        <div id="map" style="height: 100%"></div>
+        <script>
+            var map = L.map('map', {
+                zoom: 3,
+                center: [51.505, -0.09],
+            })
+            L.tileLayer('http://localhost:PORT?z={z}&x={x}&y={y}', {
+                minZoom: MIN_ZOOM,
+                maxZoom: MAX_ZOOM,
+                tileSize: TILE_SIZE,
+                zoomOffset: ZOOM_OFFSET,
+            }).addTo(map)
+            L.GridLayer.GridDebug = L.GridLayer.extend({
+                createTile: function (coords) {
+                    const tile = document.createElement('div')
+                    tile.style.outline = '1px solid green'
+                    tile.style.fontWeight = 'bold'
+                    tile.style.fontSize = '14pt'
+                    tile.innerHTML = [coords.z, coords.x, coords.y].join('/')
+                    return tile
+                },
+            })
+
+            L.gridLayer.gridDebug = function (opts) {
+                return new L.GridLayer.GridDebug(opts)
+            }
+
+            map.addLayer(
+                L.gridLayer.gridDebug({
+                    tileSize: 512,
+                }),
+            )
+
+            var hash = new L.Hash(map)
+        </script>
+    </body>
+</html>
