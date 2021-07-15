@@ -1,7 +1,13 @@
 import http from 'http'
 import fs from 'fs'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 import mbtiles from './mbtiles.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const empty = path.resolve(__dirname, '../assets/empty.webp')
+const index = path.resolve(__dirname, '../assets/index.html')
 
 export interface Options {
     port?: number
@@ -20,8 +26,8 @@ const manager = async (
         minZoom = 0,
         maxZoom = 21,
         port = 8080,
-        emptyTile = './assets/empty.webp',
-        indexFile = './assets/index.html',
+        emptyTile = empty,
+        indexFile = index,
         silent = false,
         tileSize = 512,
         zoomOffset = -1,
