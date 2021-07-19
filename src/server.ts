@@ -11,8 +11,8 @@ const index = path.resolve(__dirname, '../assets/index.html')
 
 export interface Options {
     port?: number
-    minZoom?: string
-    maxZoom?: string
+    minZoom?: number
+    maxZoom?: number
     emptyTile?: string
     indexFile?: string
     silent?: boolean
@@ -31,7 +31,7 @@ const manager = async (
         silent = false,
         tileSize = 512,
         zoomOffset = -1,
-    },
+    }: Options,
 ) => {
     const db = await mbtiles(`${file}?mode=ro`)
     const empty = fs.readFileSync(emptyTile)
