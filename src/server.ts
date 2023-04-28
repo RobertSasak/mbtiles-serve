@@ -48,6 +48,7 @@ const manager = async (
             res.end(index)
             return
         }
+        res.setHeader('Access-Control-Allow-Origin', '*')
         const url = new URL(req.url ?? '', 'https://example.org/')
         const x = parseInt(url.searchParams.get('x') ?? '', 10)
         const y = parseInt(url.searchParams.get('y') ?? '', 10)
@@ -77,7 +78,7 @@ const manager = async (
             res.end(t)
         } catch (error) {
             if (!silent) {
-                console.log(404, z, x, y, error.toString())
+                console.log(404, z, x, y, error?.toString())
             }
             res.writeHead(404)
             res.end(empty)
