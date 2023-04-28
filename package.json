@@ -1,6 +1,6 @@
 {
     "name": "mbtiles-serve",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Fast HTTP server serving tiles directly from mbtiles",
     "exports": "./dist/index.js",
     "type": "module",
