@@ -41,9 +41,9 @@ const cli = meow(
             zoomOffset: {
                 type: 'number',
             },
-            verbose: {
+            silent: {
                 type: 'boolean',
-                alias: 'v',
+                alias: 's',
             },
         },
     },
