@@ -30,7 +30,7 @@ const manager = async (
         indexFile = index,
         silent = false,
         tileSize = 512,
-        zoomOffset = -1,
+        zoomOffset = 0,
     }: Options,
 ) => {
     const db = await mbtiles(`${file}?mode=ro`)

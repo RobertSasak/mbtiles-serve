@@ -12,6 +12,7 @@ const cli = meow(
     --port, -p       port number of the HTTP server, default 8080
     --minZoom, -min  minimal zoom level, default 0
     --maxZoom, -max  maximal zoom level, default 21
+    --zoomOffset     zoom offset, default, 0
     --silent, -s     skip logging requested tiles
 
     Examples
@@ -36,6 +37,9 @@ const cli = meow(
             maxZoom: {
                 type: 'number',
                 alias: 'max',
+            },
+            zoomOffset: {
+                type: 'number',
             },
             verbose: {
                 type: 'boolean',
