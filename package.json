@@ -8,6 +8,7 @@
         "start": "tsc && node dist/cli.js",
         "build": "tsc",
         "lint": "tslint --project tsconfig.json",
+        "test": "echo test",
         "deploy": "npx np"
     },
     "bin": {
